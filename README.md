@@ -1,9 +1,25 @@
-# React + Vite
+# Phone Comparison Web Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a full-stack web application that allows users to compare mobile phones. It features a React-based frontend and a Node.js/Express backend, with a MongoDB database to store phone data.
 
-Currently, two official plugins are available:
+## Project Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# phone_compare
+- **Frontend**: Built with React.js and styled using Tailwind CSS.
+- **Backend**: Powered by Node.js and Express.js, connected to a MongoDB database.
+- **Features**:
+  - Search for phones by name.
+  - Compare details of two selected phones.
+
+## Prerequisites
+
+Before you start, ensure you have the following installed:
+
+- **Node.js** (v14.x or later)
+- **npm** (v6.x or later) or **Yarn** (v1.x or later)
+- **MongoDB** (for backend database)
+
+## Project Setup
+
+### 1. Clone the Repository
+
+First, clone the repository from GitHub:
