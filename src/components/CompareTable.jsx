@@ -1,7 +1,7 @@
-import React,{useEffect} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function CompareTable({ showDifferences }) {
+function CompareTable({ showDifferences, phone1, phone2 }) {
   const specs = [
     { category: 'NETWORK', key: 'network', subKeys: ['technology'] },
     { category: 'LAUNCH', key: 'launch', subKeys: ['announced'] },
@@ -11,28 +11,9 @@ function CompareTable({ showDifferences }) {
     // Add more categories and subKeys as needed
   ];
 
-  const phone1 = {};
-  
-  const phone2 = {};
-
-        useEffect(()=>{
-
-            
-
-
-
-
-        },[])   
-
-
-
-
-
-
-
-
-
-
+  if (!phone1 || !phone2) {
+    return <div>Loading...</div>;
+  }
 
   // Improved normalization function
   const normalizeString = (str) => {

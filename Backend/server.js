@@ -1,51 +1,31 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import dotenv from 'dotenv';
+import phoneRoutes from './router/phoneRoutes.js';
+
+dotenv.config();
 
 const app = express();
-const port = 5000;
+const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
+// Routes
+app.use('/api/phones', phoneRoutes);
+
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/phoneComparison', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+mongoose.connect(process.env.MONGO_URI, {
 
-// Phone schema and model
-const phoneSchema = new mongoose.Schema({
-  name: String,
-  brand: String,
-  storage: String,
-  ram: String,
-  price: Number,
-  network: Object,
-  launch: Object,
-  body: Object,
-  display: Object,
-  memory: Object
-});
-
-const Phone = mongoose.model('Phone', phoneSchema);
-
-// Route to get phone data by name
-app.get('/phones', async (req, res) => {
-  try {
-    const { name } = req.query;
-    const phone = await Phone.findOne({ name });
-    if (phone) {
-      res.json(phone);
-    } else {
-      res.status(404).json({ message: 'Phone not found' });
-    }
-  } catch (error) {
-    res.status(500).json({ message: 'Server error' });
-  }
-});
-
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
+})
+  .then(() => {
+    console.log('Connected to MongoDB');
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error('MongoDB connection error:', error);
+  });
