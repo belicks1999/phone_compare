@@ -22,4 +22,7 @@ Before you start, ensure you have the following installed:
 
 ### 1. Clone the Repository
 
+First Run Backend
+Then Run Frontend
+
 First, clone the repository from GitHub:
