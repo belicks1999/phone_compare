@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const SearchBox = ({ onSelectPhone1, onSelectPhone2, initialPhone1, initialPhone2 }) => {
+  // State to hold all phone data and filtered results
   const [phones, setPhones] = useState([]);
   const [filteredPhones1, setFilteredPhones1] = useState([]);
   const [filteredPhones2, setFilteredPhones2] = useState([]);
@@ -10,6 +11,7 @@ const SearchBox = ({ onSelectPhone1, onSelectPhone2, initialPhone1, initialPhone
   const [showDropdown1, setShowDropdown1] = useState(true);
   const [showDropdown2, setShowDropdown2] = useState(true);
 
+  // Fetch phone data from the server when the component mounts
   useEffect(() => {
     const fetchPhones = async () => {
       try {
@@ -28,6 +30,7 @@ const SearchBox = ({ onSelectPhone1, onSelectPhone2, initialPhone1, initialPhone
     fetchPhones();
   }, [initialPhone1, initialPhone2, onSelectPhone1, onSelectPhone2]);
 
+  // Filter phones based on search input for Phone 1
   useEffect(() => {
     if (searchLetter1) {
       const filtered = phones.filter(phone => phone.name.toUpperCase().startsWith(searchLetter1));
@@ -37,6 +40,7 @@ const SearchBox = ({ onSelectPhone1, onSelectPhone2, initialPhone1, initialPhone
     }
   }, [searchLetter1, phones]);
 
+  // Filter phones based on search input for Phone 2
   useEffect(() => {
     if (searchLetter2) {
       const filtered = phones.filter(phone => phone.name.toUpperCase().startsWith(searchLetter2));
@@ -46,12 +50,14 @@ const SearchBox = ({ onSelectPhone1, onSelectPhone2, initialPhone1, initialPhone
     }
   }, [searchLetter2, phones]);
 
+  // Handle phone selection for Phone 1
   const handleSelectPhone1 = (phone) => {
     onSelectPhone1(phone);
     setSearchLetter1(phone.name);
     setShowDropdown1(false);
   };
 
+  // Handle phone selection for Phone 2
   const handleSelectPhone2 = (phone) => {
     onSelectPhone2(phone);
     setSearchLetter2(phone.name);

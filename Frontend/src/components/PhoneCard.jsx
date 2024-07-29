@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CompareTable from './CompareTable';
 
-// Import images
+// Import images for the phones
 import iphone15 from '../assets/images/ip15.jpg';
 import xiomo14 from '../assets/images/x14.jpg';
 import s23 from '../assets/images/s23.jpg';
@@ -10,7 +10,7 @@ import op11 from '../assets/images/op11.jpg';
 import oppo from '../assets/images/oppo.jpg';
 import am from '../assets/images/am.jpeg';
 
-// Map phone names to image imports
+// Map phone names to their corresponding image imports
 const phoneImages = {
   'Xiaomi 14': xiomo14,
   'iPhone 15': iphone15,
@@ -21,13 +21,15 @@ const phoneImages = {
 };
 
 function PhoneCard({ phone1, phone2 }) {
+  // State to toggle the visibility of differences
   const [showDifferences, setShowDifferences] = useState(false);
 
+  // Toggle function to switch between showing all details and showing differences
   const Toggle = () => {
     setShowDifferences(!showDifferences);
   };
 
-  // Function to get image based on phone name
+  // Function to get the image based on phone name
   const getPhoneImage = (phoneName) => {
     return phoneImages[phoneName] || null; // Return null if image is not found
   };
@@ -37,6 +39,7 @@ function PhoneCard({ phone1, phone2 }) {
       <div className="flex w-[820px] justify-center items-center bg-white p-2">
         <div className="flex w-2/6 flex-row mr-4 text-start">
           <div className="w-full flex mt-60 justify-center relative">
+            {/* Button to toggle between showing all details and showing differences */}
             <button
               className={`p-3 tracking-tighter text-white font-semibold mr-1 ${showDifferences ? 'bg-neutral-500' : 'bg-red-600'}`}
               onClick={() => setShowDifferences(false)}
@@ -53,12 +56,14 @@ function PhoneCard({ phone1, phone2 }) {
           </div>
         </div>
 
+        {/* Display details for phone1 */}
         <div className="flex w-2/6 flex-col text-start">
           <h1 className='mt-8 text-md font-bold font-serif mb-2 text-neutral-700'>
             {phone1.name}
           </h1>
           <div className="flex w-full">
             <div className='w-2/3'>
+              {/* Phone image and details */}
               <img className='w-36 mb-3' src={getPhoneImage(phone1.name)} alt={phone1.name} />
               <p className='text-sm text-neutral-600'>{phone1.storage} {phone1.ram} RAM</p>
               <div className='flex items-center'>
@@ -68,6 +73,7 @@ function PhoneCard({ phone1, phone2 }) {
             </div>
             <div className='w-1/3 flex justify-center'>
               <div className='flex flex-col mr-3'>
+                {/* Action buttons for phone1 */}
                 <h1 className='bg-black text-white cursor-pointer font-bold text-start px-2 py-2 w-26 mr-2 text-xs hover:bg-red-600 mb-1'>REVIEW</h1>
                 <h1 className='bg-neutral-200 text-gray-700 font-semibold tracking-tighter px-2 py-2 w-28 text-start mr-2 text-xs hover:bg-red-600 cursor-pointer hover:text-white mb-1'>SPECIFICATIONS</h1>
                 <h1 className='bg-neutral-200 text-gray-700 font-semibold tracking-tighter px-2 py-2 w-28 text-start mr-2 text-xs hover:bg-red-600 cursor-pointer hover:text-white mb-1'>READ OPINION</h1>
@@ -78,12 +84,15 @@ function PhoneCard({ phone1, phone2 }) {
             </div>
           </div>
         </div>
+
+        {/* Display details for phone2 */}
         <div className="flex w-2/6 flex-col ml-2 text-start">
           <h1 className='mt-8 text-md font-bold font-serif mb-2 text-neutral-700'>
             {phone2.name}
           </h1>
           <div className="flex w-full">
             <div className='w-2/3'>
+              {/* Phone image and details */}
               <img className='w-36 mb-3' src={getPhoneImage(phone2.name)} alt={phone2.name} />
               <p className='text-sm text-neutral-600'>{phone2.storage} {phone2.ram} RAM</p>
               <div className='flex items-center'>
@@ -93,6 +102,7 @@ function PhoneCard({ phone1, phone2 }) {
             </div>
             <div className='w-1/3 flex justify-center'>
               <div className='flex flex-col mr-3'>
+                {/* Action buttons for phone2 */}
                 <h1 className='bg-black text-white cursor-pointer font-bold text-start px-2 py-2 w-26 mr-2 text-xs hover:bg-red-600 mb-1'>REVIEW</h1>
                 <h1 className='bg-neutral-200 text-gray-700 font-semibold tracking-tighter px-2 py-2 w-28 text-start mr-2 text-xs hover:bg-red-600 cursor-pointer hover:text-white mb-1'>SPECIFICATIONS</h1>
                 <h1 className='bg-neutral-200 text-gray-700 font-semibold tracking-tighter px-2 py-2 w-28 text-start mr-2 text-xs hover:bg-red-600 cursor-pointer hover:text-white mb-1'>READ OPINION</h1>
@@ -105,6 +115,7 @@ function PhoneCard({ phone1, phone2 }) {
         </div>
       </div>
 
+      {/* Component to compare the two phones */}
       <CompareTable phone1={phone1} phone2={phone2} showDifferences={showDifferences} />
     </div>
   );
