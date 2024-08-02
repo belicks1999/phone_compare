@@ -15,7 +15,7 @@ const SearchBox = ({ onSelectPhone1, onSelectPhone2, initialPhone1, initialPhone
   useEffect(() => {
     const fetchPhones = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/phones/');
+        const response = await axios.get('https://phone-compare-backend.vercel.app/api/phones/');
         if (response.data) {
           setPhones(response.data);
           // Set default phones if provided

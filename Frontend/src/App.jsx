@@ -14,7 +14,7 @@ function App() {
   useEffect(() => {
     const fetchInitialPhones = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/phones/');
+        const response = await axios.get('https://phone-compare-backend.vercel.app/api/phones/');
         if (response.data && response.data.length >= 2) {
           // Set initial phones if at least two are available
           setInitialPhones({
