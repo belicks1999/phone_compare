@@ -4,22 +4,22 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import phoneRoutes from './router/phoneRoutes.js';
 
-// Load environment variables from .env file
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
-app.use(cors()); // Enable Cross-Origin Resource Sharing
-app.use(express.json()); // Parse JSON bodies
+app.use(cors());
+app.use(express.json());
 
-// Routes
-app.use('/api/phones', phoneRoutes); // Route for phone-related API requests
+app.use('/api/phones', phoneRoutes);
 
-// MongoDB connection
+app.use((req, res) => {
+  res.status(404).send('404: Not Found');
+});
+
 mongoose.connect(process.env.MONGO_URI, {
-  
+
 })
   .then(() => {
     console.log('Connected to MongoDB');
