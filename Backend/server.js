@@ -19,7 +19,7 @@ app.use((req, res) => {
 });
 
 mongoose.connect(process.env.MONGO_URI, {
-
+  serverSelectionTimeoutMS: 30000
 })
   .then(() => {
     console.log('Connected to MongoDB');
