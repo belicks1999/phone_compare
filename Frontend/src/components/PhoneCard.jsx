@@ -10,6 +10,8 @@ import op11 from '../assets/images/op11.jpg';
 import oppo from '../assets/images/oppo.jpg';
 import am from '../assets/images/am.jpeg';
 
+
+
 // Map phone names to their corresponding image imports
 const phoneImages = {
   'Xiaomi 14': xiomo14,
